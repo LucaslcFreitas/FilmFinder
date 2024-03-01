@@ -1,0 +1,34 @@
+<nav class="nav-bar">
+    <div class="container" [ngClass]="{ 'suspense-menu': isOpenMenu }">
+        <a class="logo-link" routerLink="/"
+            ><h2>FilmFinder</h2>
+            <fa-icon [icon]="iconSearch"
+        /></a>
+        <ul class="links">
+            <li>
+                <a>Filmes</a>
+                <div class="dropdown-nav">
+                    <a routerLink="">Lançamentos</a>
+                    <a routerLink="">Populares</a>
+                    <a routerLink="">Melhores Avaliados</a>
+                </div>
+            </li>
+            <li><a routerLink="">Atores</a></li>
+        </ul>
+        <div class="search-container">
+            <div class="search">
+                <fa-icon [icon]="iconSearch" />
+                <input
+                    type="search"
+                    placeholder="Encontrar filmes, atores..."
+                />
+            </div>
+            <button class="theme" (click)="handleChangeTheme()">
+                <fa-icon [icon]="iconTheme" />
+            </button>
+            <button class="menu" (click)="handleOpenMenu()">
+                <fa-icon [icon]="iconMenu" />
+            </button>
+        </div>
+    </div>
+</nav>
