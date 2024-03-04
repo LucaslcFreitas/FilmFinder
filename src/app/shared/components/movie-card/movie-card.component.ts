@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { Movie } from '../../models/movie';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHeart as faHeartChecked } from '@fortawesome/free-solid-svg-icons';
@@ -23,12 +23,15 @@ export class MovieCardComponent {
     //Icons
     iconHeart = this.isFavorite ? faHeartChecked : faHeartUnchecked;
 
-    handleFavorite() {
+    constructor(private router: Router) {}
+
+    handleFavorite(e: Event) {
+        e.stopPropagation();
         this.isFavorite = !this.isFavorite;
         this.iconHeart = this.isFavorite ? faHeartChecked : faHeartUnchecked;
     }
 
-    test() {
-        console.log('Test');
+    handleOpenMovie() {
+        this.router.navigate([`movie/${this.movie.id}`]);
     }
 }

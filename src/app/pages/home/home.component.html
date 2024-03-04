@@ -1,0 +1,32 @@
+<main>
+    <header class="header">
+        <h1>FilmFinder</h1>
+        <p>
+            Veja as principais novidades e descubra o filme perfeito para o fim
+            de semana!
+        </p>
+    </header>
+    <div class="container">
+        <app-list-movies
+            [loading]="loadingNowPlaing"
+            [movies]="moviesNowPlaing"
+            [title]="'Últimos Lançamentos'"
+            [isDemo]="true"
+            [showMoreLink]="'now_plaing'"
+        />
+        <app-list-movies
+            [loading]="loadingPopular"
+            [movies]="moviesPopular"
+            [title]="'Filmes Populares'"
+            [isDemo]="true"
+            [showMoreLink]="'popular'"
+        />
+        <app-list-movies
+            [loading]="loadingTopRated"
+            [movies]="moviesTopRated"
+            [title]="'Mais Bem Avaliados'"
+            [isDemo]="true"
+            [showMoreLink]="'top_rated'"
+        />
+    </div>
+</main>

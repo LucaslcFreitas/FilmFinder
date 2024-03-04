@@ -1,4 +1,4 @@
-<div class="list-container">
+<div class="list-container" *ngIf="!loading; else loading_content">
     <h3 class="title">{{ title }}</h3>
     <div class="list" [ngClass]="{ 'inline-list': isDemo }">
         <div class="movie" *ngFor="let movie of listMovies">
@@ -9,3 +9,4 @@
         >Ver mais...</a
     >
 </div>
+<ng-template #loading_content><p>Loading</p></ng-template>
