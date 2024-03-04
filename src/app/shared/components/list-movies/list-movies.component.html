@@ -1,0 +1,11 @@
+<div class="list-container">
+    <h3 class="title">{{ title }}</h3>
+    <div class="list" [ngClass]="{ 'inline-list': isDemo }">
+        <div class="movie" *ngFor="let movie of listMovies">
+            <app-movie-card [movie]="movie" />
+        </div>
+    </div>
+    <a routerLink="{{ showMoreLink }}" class="see-more" *ngIf="isDemo"
+        >Ver mais...</a
+    >
+</div>
