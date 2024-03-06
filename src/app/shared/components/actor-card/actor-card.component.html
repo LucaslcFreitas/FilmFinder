@@ -1,0 +1,14 @@
+<a routerLink="/actor/{{ actor.id }}" style="text-decoration: none">
+    <div class="actor-card">
+        <div class="profile">
+            <img
+                src="{{ baseUrlImage }}{{ actor.profile_path }}"
+                alt="{{ actor.name }}"
+            />
+        </div>
+        <div class="body">
+            <h3>{{ actor.name }}</h3>
+            <p>{{ actor.character }}</p>
+        </div>
+    </div>
+</a>
