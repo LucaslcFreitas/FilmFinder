@@ -1,12 +1,23 @@
 <div class="list-container" *ngIf="!loading; else loading_content">
     <h3 class="title">{{ title }}</h3>
-    <div class="list" [ngClass]="{ 'inline-list': isDemo }">
-        <div class="movie" *ngFor="let movie of listMovies">
-            <app-movie-card [movie]="movie" />
+    <ng-container *ngIf="!inError; else error_content">
+        <div class="list" [ngClass]="{ 'inline-list': isDemo }">
+            <div class="movie" *ngFor="let movie of listMovies">
+                <app-movie-card [movie]="movie" />
+            </div>
         </div>
-    </div>
-    <a routerLink="{{ showMoreLink }}" class="see-more" *ngIf="isDemo"
-        >Ver mais...</a
-    >
+        <a routerLink="{{ showMoreLink }}" class="see-more" *ngIf="isDemo"
+            >Ver mais...</a
+        >
+    </ng-container>
+    <ng-template #error_content>
+        <div class="error">
+            <h3>Falha ao buscar os dados :(</h3>
+        </div>
+    </ng-template>
 </div>
-<ng-template #loading_content><p>Loading</p></ng-template>
+<ng-template #loading_content>
+    <div class="loading">
+        <mat-spinner [diameter]="50" />
+    </div>
+</ng-template>

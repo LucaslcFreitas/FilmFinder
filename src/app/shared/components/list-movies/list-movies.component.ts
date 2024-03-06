@@ -9,11 +9,17 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MovieCardComponent } from '../movie-card/movie-card.component';
 import { Movie } from '../../models/movie';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
     selector: 'app-list-movies',
     standalone: true,
-    imports: [CommonModule, RouterModule, MovieCardComponent],
+    imports: [
+        CommonModule,
+        RouterModule,
+        MovieCardComponent,
+        MatProgressSpinnerModule,
+    ],
     templateUrl: './list-movies.component.html',
     styleUrl: './list-movies.component.sass',
 })
@@ -23,6 +29,7 @@ export class ListMoviesComponent implements OnInit, OnChanges {
     @Input() loading: boolean = true;
     @Input() isDemo?: boolean = false;
     @Input() showMoreLink?: string = '';
+    @Input() inError?: boolean = false;
 
     listMovies: Movie[] = [];
 

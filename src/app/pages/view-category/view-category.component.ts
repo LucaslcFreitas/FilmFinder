@@ -1,0 +1,98 @@
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Movie } from '../../shared/models/movie';
+import { MovieService } from '../../core/services/movie/movie.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ListMoviesComponent } from '../../shared/components/list-movies/list-movies.component';
+import { SelectPageComponent } from '../../shared/components/select-page/select-page.component';
+
+@Component({
+    selector: 'app-view-category',
+    standalone: true,
+    imports: [HttpClientModule, ListMoviesComponent, SelectPageComponent],
+    providers: [MovieService],
+    templateUrl: './view-category.component.html',
+    styleUrl: './view-category.component.sass',
+})
+export class ViewCategoryComponent {
+    title: string = '';
+    movies: Movie[] = [];
+    loading: boolean = true;
+    error: boolean = false;
+    page: number = 1;
+    pages: number = 2;
+    currentUrl = '';
+
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private movieService: MovieService
+    ) {
+        route.queryParams.subscribe((p) => {
+            if (this.page.toString() != p['page']) {
+                this.loadMovies();
+                this.page = Number(p['page']) || 1;
+            }
+        });
+    }
+
+    private loadMovies() {
+        this.movies = [];
+        const category = this.router.url;
+        this.loading = true;
+
+        this.route.queryParams.subscribe((params) => {
+            this.page = Number(params['page']) || 1;
+        });
+
+        if (category.startsWith('/nowPlaing')) {
+            this.title = 'Últimos Lançamentos';
+            this.currentUrl = '/nowPlaing';
+            this.movieService.getNowPlaingMovies(this.page).subscribe(
+                (response) => {
+                    this.movies = response.results;
+                    this.loading = false;
+                    this.pages = response.total_pages;
+                    this.error = false;
+                },
+                (error) => {
+                    console.log(error);
+                    this.loading = false;
+                    this.error = true;
+                }
+            );
+        } else if (category.startsWith('/popular')) {
+            this.title = 'Filmes Populares';
+            this.currentUrl = '/popular';
+            this.movieService.getPopularMovies(this.page).subscribe(
+                (response) => {
+                    this.movies = response.results;
+                    this.loading = false;
+                    this.pages = response.total_pages;
+                    this.error = false;
+                },
+                (error) => {
+                    console.log(error);
+                    this.loading = false;
+                    this.error = true;
+                }
+            );
+        } else {
+            this.title = 'Mais Bem Avaliados';
+            this.currentUrl = '/topRated';
+            this.movieService.getTopRatedMovies(this.page).subscribe(
+                (response) => {
+                    this.movies = response.results;
+                    this.loading = false;
+                    this.pages = response.total_pages;
+                    this.error = false;
+                },
+                (error) => {
+                    console.log(error);
+                    this.loading = false;
+                    this.error = true;
+                }
+            );
+        }
+    }
+}

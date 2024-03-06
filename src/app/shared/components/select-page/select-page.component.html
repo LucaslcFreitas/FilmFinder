@@ -1,0 +1,9 @@
+<div class="pages">
+    <a
+        *ngFor="let item of pages"
+        [routerLink]="currentUrl"
+        [queryParams]="{ page: item.value }"
+        [ngClass]="{ current: item.selected }"
+        >{{ item.value }}</a
+    >
+</div>
