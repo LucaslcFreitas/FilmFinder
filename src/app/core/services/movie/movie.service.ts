@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { Response } from '../../../shared/models/response';
 import { Movie } from '../../../shared/models/movie';
+import { MovieDetails } from '../../../shared/models/movie-details';
 
 @Injectable({
     providedIn: 'root',
@@ -35,5 +36,11 @@ export class MovieService {
         const url = `${this.baseApiUrl}${this.endpointTopRated}?api_key=${environment.apiKey}&language=${this.language}&page=${page}`;
 
         return this.http.get<Response<Movie>>(url);
+    }
+
+    getMovie(id: string): Observable<MovieDetails> {
+        const url = `${this.baseApiUrl}${id}?api_key=${environment.apiKey}&append_to_response=credits,videos,release_dates&language=${this.language}`;
+
+        return this.http.get<MovieDetails>(url);
     }
 }
