@@ -2,9 +2,11 @@
     <h3 class="title">{{ title }}</h3>
     <ng-container *ngIf="!inError; else error_content">
         <div class="list">
-            <div class="movie" *ngFor="let actor of actors">
-                <app-actor-card [actor]="actor" />
-            </div>
+            @for (actor of actors; track $index) {
+                <div class="movie">
+                    <app-actor-card [actor]="actor" />
+                </div>
+            }
         </div>
     </ng-container>
     <ng-template #error_content>

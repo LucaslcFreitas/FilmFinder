@@ -1,0 +1,13 @@
+<div class="container">
+    <app-list-actors
+        [title]="'Atores Populares'"
+        [actors]="actors"
+        [loading]="loading"
+        [inError]="error"
+    />
+    <app-select-page
+        [currentUrl]="currentUrl"
+        [page]="page"
+        [totalPages]="pages"
+    />
+</div>

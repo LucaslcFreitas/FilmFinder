@@ -3,6 +3,7 @@ import { Cast } from '../../models/cast';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ActorCardComponent } from '../actor-card/actor-card.component';
+import { Actor } from '../../models/actor';
 
 @Component({
     selector: 'app-list-actors',
@@ -12,7 +13,7 @@ import { ActorCardComponent } from '../actor-card/actor-card.component';
     styleUrl: './list-actors.component.sass',
 })
 export class ListActorsComponent {
-    @Input() actors: Cast[] = [];
+    @Input() actors!: Cast[] | Actor[];
     @Input() title: string = '';
     @Input() loading: boolean = true;
     @Input() inError?: boolean = false;
