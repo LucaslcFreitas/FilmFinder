@@ -10,6 +10,7 @@ import { PercentagePipe } from '../../core/pipes/percentage.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHeart as faHeartChecked } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartUnchecked } from '@fortawesome/free-regular-svg-icons';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
     selector: 'app-view-movie',
@@ -20,6 +21,7 @@ import { faHeart as faHeartUnchecked } from '@fortawesome/free-regular-svg-icons
         CommonModule,
         PercentagePipe,
         FontAwesomeModule,
+        MatProgressSpinnerModule,
     ],
     providers: [
         MovieService,

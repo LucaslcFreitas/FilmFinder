@@ -1,4 +1,4 @@
-<header class="container-header">
+<header class="container-header" *ngIf="!loading; else loading_content">
     <div class="poster">
         <img src="{{ imgPath }}{{ actorDetails.profile_path }}" />
     </div>
@@ -29,6 +29,11 @@
         </div>
     </div>
 </header>
+<ng-template #loading_content>
+    <div class="loading">
+        <mat-spinner [diameter]="50" />
+    </div>
+</ng-template>
 <div class="container">
     @if (actorDetails && actorDetails.movie_credits) {
         <app-list-movies

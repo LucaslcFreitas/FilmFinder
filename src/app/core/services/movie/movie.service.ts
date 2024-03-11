@@ -11,6 +11,7 @@ import { MovieDetails } from '../../../shared/models/movie-details';
 })
 export class MovieService {
     private baseApiUrl = 'https://api.themoviedb.org/3/movie/';
+    private baseApiUrlSearch = 'https://api.themoviedb.org/3/search/movie';
 
     private endpointnowPlaing = 'now_playing';
     private endpointPopular = 'popular';
@@ -42,5 +43,11 @@ export class MovieService {
         const url = `${this.baseApiUrl}${id}?api_key=${environment.apiKey}&append_to_response=credits,videos,release_dates&language=${this.language}`;
 
         return this.http.get<MovieDetails>(url);
+    }
+
+    searchMovies(q: string): Observable<Response<Movie>> {
+        const url = `${this.baseApiUrlSearch}?api_key=${environment.apiKey}&language=${this.language}&query=${q}`;
+
+        return this.http.get<Response<Movie>>(url);
     }
 }

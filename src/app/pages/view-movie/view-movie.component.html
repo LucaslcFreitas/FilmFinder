@@ -1,5 +1,6 @@
 <header
     class="header"
+    *ngIf="!loading; else loading_content"
     [style.background-image]="
         'linear-gradient(0deg, rgba(44, 52, 64, 0.7), rgba(44, 52, 64, 0.7)), url(\'' +
         imgPath +
@@ -64,9 +65,14 @@
         </div>
     </div>
 </header>
+<ng-template #loading_content>
+    <div class="loading">
+        <mat-spinner [diameter]="50" />
+    </div>
+</ng-template>
 <div class="container">
     <app-list-actors
-        [actors]="movieDetails.credits.cast"
+        [actors]="movieDetails ? movieDetails.credits.cast : undefined"
         [title]="'Elenco'"
         [loading]="loading"
         [inError]="error"

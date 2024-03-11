@@ -16,13 +16,23 @@
             <li><a routerLink="/actors">Atores</a></li>
         </ul>
         <div class="search-container">
-            <div class="search">
+            <form
+                (ngSubmit)="handleSearch()"
+                [formGroup]="searchForm"
+                #formDir="ngForm"
+                class="search"
+            >
                 <fa-icon [icon]="iconSearch" />
                 <input
                     type="search"
-                    placeholder="Encontrar filmes, atores..."
+                    formControlName="search"
+                    placeholder="Encontrar filmes..."
+                    [ngClass]="{
+                        'search-error':
+                            getSearch()?.invalid && formDir.submitted
+                    }"
                 />
-            </div>
+            </form>
             <button class="theme" (click)="handleChangeTheme()">
                 <fa-icon [icon]="iconTheme" />
             </button>

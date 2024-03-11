@@ -13,7 +13,7 @@ import { Actor } from '../../models/actor';
     styleUrl: './list-actors.component.sass',
 })
 export class ListActorsComponent {
-    @Input() actors!: Cast[] | Actor[];
+    @Input() actors?: Cast[] | Actor[];
     @Input() title: string = '';
     @Input() loading: boolean = true;
     @Input() inError?: boolean = false;

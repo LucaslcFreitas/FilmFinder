@@ -6,11 +6,18 @@ import { ActivatedRoute } from '@angular/router';
 import { ListMoviesComponent } from '../../shared/components/list-movies/list-movies.component';
 import { CommonModule } from '@angular/common';
 import { AgePipe } from '../../core/pipes/age.pipe';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
     selector: 'app-view-actor',
     standalone: true,
-    imports: [HttpClientModule, ListMoviesComponent, CommonModule, AgePipe],
+    imports: [
+        HttpClientModule,
+        ListMoviesComponent,
+        CommonModule,
+        AgePipe,
+        MatProgressSpinnerModule,
+    ],
     providers: [ActorService],
     templateUrl: './view-actor.component.html',
     styleUrl: './view-actor.component.sass',
