@@ -4,6 +4,7 @@ import { MovieService } from '../../core/services/movie/movie.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Movie } from '../../shared/models/movie';
 import { ListMoviesComponent } from '../../shared/components/list-movies/list-movies.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-search-result',
@@ -22,7 +23,8 @@ export class SearchResultComponent {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private movieService: MovieService
+        private movieService: MovieService,
+        private titleService: Title
     ) {
         this.route.queryParams.subscribe((p) => {
             if (p['q'] && this.query != p['q']) {
@@ -32,6 +34,7 @@ export class SearchResultComponent {
                 this.router.navigate(['/']);
             }
         });
+        this.titleService.setTitle(`${this.query} | FilmFinder`);
     }
 
     search() {

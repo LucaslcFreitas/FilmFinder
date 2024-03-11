@@ -11,6 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHeart as faHeartChecked } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartUnchecked } from '@fortawesome/free-regular-svg-icons';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-view-movie',
@@ -46,10 +47,12 @@ export class ViewMovieComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private movieService: MovieService,
-        private favoriteService: FavoriteService
+        private favoriteService: FavoriteService,
+        private titleService: Title
     ) {
         const id = this.route.snapshot.paramMap.get('id');
         this.loadMovie(id);
+        this.titleService.setTitle('FilmFinder');
     }
 
     ngOnInit(): void {
@@ -68,6 +71,9 @@ export class ViewMovieComponent implements OnInit {
                     this.movieDetails = response;
                     this.loading = false;
                     this.error = false;
+                    this.titleService.setTitle(
+                        `${response.title} | FilmFinder`
+                    );
                 },
                 (error) => {
                     console.log(error);

@@ -5,6 +5,7 @@ import { MovieService } from '../../core/services/movie/movie.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ListMoviesComponent } from '../../shared/components/list-movies/list-movies.component';
 import { SelectPageComponent } from '../../shared/components/select-page/select-page.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-view-category',
@@ -26,7 +27,8 @@ export class ViewCategoryComponent {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private movieService: MovieService
+        private movieService: MovieService,
+        private titleService: Title
     ) {
         route.queryParams.subscribe((p) => {
             if (this.page.toString() != p['page']) {
@@ -46,6 +48,7 @@ export class ViewCategoryComponent {
         });
 
         if (category.startsWith('/nowPlaing')) {
+            this.titleService.setTitle('Últimos Lançamentos | FilmFinder');
             this.title = 'Últimos Lançamentos';
             this.currentUrl = '/nowPlaing';
             this.movieService.getNowPlaingMovies(this.page).subscribe(
@@ -62,6 +65,7 @@ export class ViewCategoryComponent {
                 }
             );
         } else if (category.startsWith('/popular')) {
+            this.titleService.setTitle('Filmes Populares | FilmFinder');
             this.title = 'Filmes Populares';
             this.currentUrl = '/popular';
             this.movieService.getPopularMovies(this.page).subscribe(
@@ -78,6 +82,7 @@ export class ViewCategoryComponent {
                 }
             );
         } else {
+            this.titleService.setTitle('Mais Bem Avaliados | FilmFinder');
             this.title = 'Mais Bem Avaliados';
             this.currentUrl = '/topRated';
             this.movieService.getTopRatedMovies(this.page).subscribe(

@@ -3,6 +3,7 @@ import { ListMoviesComponent } from '../../shared/components/list-movies/list-mo
 import { Movie } from '../../shared/models/movie';
 import { MovieService } from '../../core/services/movie/movie.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-home',
@@ -25,7 +26,12 @@ export class HomeComponent implements OnInit {
     moviesTopRated: Movie[] = [];
     loadingTopRated: boolean = true;
 
-    constructor(private movieService: MovieService) {}
+    constructor(
+        private movieService: MovieService,
+        private titleService: Title
+    ) {
+        this.titleService.setTitle('FilmFinder');
+    }
 
     ngOnInit(): void {
         //Now Plaing

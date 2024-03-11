@@ -7,6 +7,7 @@ import { ListMoviesComponent } from '../../shared/components/list-movies/list-mo
 import { CommonModule } from '@angular/common';
 import { AgePipe } from '../../core/pipes/age.pipe';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-view-actor',
@@ -31,10 +32,12 @@ export class ViewActorComponent {
 
     constructor(
         private route: ActivatedRoute,
-        private actorService: ActorService
+        private actorService: ActorService,
+        private titleService: Title
     ) {
         const id = this.route.snapshot.paramMap.get('id');
         this.loadActor(id);
+        this.titleService.setTitle('FilmFinder');
     }
 
     loadActor(id: string | null) {
@@ -46,6 +49,7 @@ export class ViewActorComponent {
                     this.actorDetails = response;
                     this.loading = false;
                     this.error = false;
+                    this.titleService.setTitle(`${response.name} | FilmFinder`);
                 },
                 (error) => {
                     console.log(error);

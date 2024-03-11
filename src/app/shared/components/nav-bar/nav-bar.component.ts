@@ -61,6 +61,9 @@ export class NavBarComponent implements OnInit {
         this.theme = this.theme === 'dark' ? 'light' : 'dark';
         console.log(this.theme);
         this.iconTheme = this.theme === 'dark' ? faMoon : faSun;
+
+        if (this.theme === 'light') document.body.classList.add('theme-light');
+        else document.body.classList.remove('theme-light');
     }
 
     handleOpenMenu() {

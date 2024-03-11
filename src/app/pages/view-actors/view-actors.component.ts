@@ -3,8 +3,9 @@ import { ListActorsComponent } from '../../shared/components/list-actors/list-ac
 import { SelectPageComponent } from '../../shared/components/select-page/select-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ActorService } from '../../core/services/actor/actor.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Actor } from '../../shared/models/actor';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-view-actors',
@@ -24,8 +25,8 @@ export class ViewActorsComponent {
 
     constructor(
         private route: ActivatedRoute,
-        private router: Router,
-        private actorService: ActorService
+        private actorService: ActorService,
+        private titleService: Title
     ) {
         route.queryParams.subscribe((p) => {
             if (this.page.toString() != p['page']) {
@@ -33,6 +34,7 @@ export class ViewActorsComponent {
                 this.page = Number(p['page']) || 1;
             }
         });
+        this.titleService.setTitle('Atores Populares | FilmFinder');
     }
 
     loadActors() {
