@@ -1,4 +1,4 @@
-# Título do Projeto
+# FilmFinder
 
 Projeto FilmFinder é uma plataforma para visualizar as tendências e novidades dos filmes, e também descobrir detalhes sobre seus filmes favoritos. Nele é possível visualizar tanto filmes quanto seus atores.
 
