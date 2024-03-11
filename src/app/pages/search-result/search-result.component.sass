@@ -1,0 +1,25 @@
+@use '../../../variables'
+
+.container
+    width: variables.$container-large
+    margin: 0 auto
+
+@media (max-width: 1600px)
+    .container
+        width: variables.$container-normal
+
+@media (max-width: 1200px)
+    .container
+        width: variables.$container-small
+
+@media (max-width: 992px)
+    .container
+        width: variables.$container-tablet
+
+@media (max-width: 768px)
+    .container
+        width: variables.$container-mobile
+
+@media (max-width: 600px)
+    .container
+        width: variables.$container-small-mobile

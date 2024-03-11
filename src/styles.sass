@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+
+@use './variables'
+@import '@angular/material/prebuilt-themes/purple-green.css'
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    font-family: "Mukta", sans-serif
+
+html
+    font-size: 62.5%
+
+:root
+    $background-primary: #212226
+    $background-secondary: #2e9699
+    $color-primary: #f1f1e3
+    $color-secondary: #e2e2e1
+    $color-green: #2e9699
+    $color-yellow: #f7dc67
+    $color-orange: #f56c40
+    $color-purple: #a7236f
+    $color-dark-gray: #212226
+    $color-light-gray: #333333
+
+:root .dark-theme
+    $background-primary: #f1f1e3
+    $background-secondary: #2e9699
+    $color-primary: #212226
+    $color-secondary: #2d2e31
+    $color-green: #2e9699
+    $color-yellow: #f7dc67
+    $color-orange: #f56c40
+    $color-purple: #a7236f
+    $color-dark-gray: #212226
+    $color-light-gray: #333333
+
+body
+    @include variables.darken()
+
+.theme-light
+    @include variables.lighten()
+
+body
+    background-color: var(--bgPrimary)
+
+h1, h2, h3, h4, h5, h6, p, span, b, a, li
+    color: var(--textPrimary)
+
+.mat-mdc-progress-spinner .mdc-circular-progress__determinate-circle, .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic
+    stroke: variables.$color-orange !important

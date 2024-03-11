@@ -1,0 +1,30 @@
+@use '../../../../variables'
+
+.pages
+    display: flex
+    justify-content: center
+    gap: 1rem
+    margin: 4rem 0
+
+    a
+        width: 2.5rem
+        height: 2.5rem
+        text-decoration: none
+        font-weight: normal
+        font-size: 1.4rem
+        background-color: var(--bgPrimary)
+        text-align: center
+        color: variables.$color-orange
+        border-radius: 5px
+
+        &:hover
+            background-color: variables.$color-orange
+            color: variables.$color-primary
+
+    .current
+        font-weight: bold
+        background-color: rgba(245, 108, 64, 0.2)
+
+@media (max-width: 600px)
+    .pages
+        gap: 0.5rem

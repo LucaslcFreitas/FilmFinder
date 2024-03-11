@@ -1,0 +1,125 @@
+@use '../../../variables'
+
+.container-header
+    display: flex
+    gap: 3rem
+    justify-content: center
+    align-items: center
+    min-height: 50rem
+    padding: 1rem 0
+
+    .poster
+        img
+            max-width: 25rem
+            height: 37.5rem
+            border-radius: 5px
+
+    .details
+        width: 70rem
+
+        .title
+            font-size: 4.8rem
+            line-height: 4.8rem
+
+        .personal-data
+            p
+                font-size: 1.4rem
+                display: inline
+
+        .biograph
+            margin: 2rem 0
+
+            h2
+                font-size: 1.8rem
+
+            p
+                font-size: 1.4rem
+                line-height: 1.8rem
+
+        .detail-row
+            display: flex
+            align-items: center
+            gap: 0.5rem
+
+            h3, p
+                font-size: 1.4rem
+
+        .known-as
+            display: flex
+            align-items: center
+            gap: 0.5rem
+            flex-wrap: wrap
+
+            h3, p
+                font-size: 1.4rem
+
+            p
+                line-height: 1.4rem
+
+                &::after
+                    content: ', '
+
+                &:last-child
+                    &::after
+                        content: ''
+
+.loading
+    display: flex
+    justify-content: center
+    align-items: center
+    min-height: 20rem
+
+.container, .container-header
+    width: variables.$container-large
+    margin: 0 auto
+
+@media (max-width: 1600px)
+    .container, .container-header
+        width: variables.$container-normal
+
+@media (max-width: 1200px)
+    .container, .container-header
+        width: variables.$container-small
+
+@media (max-width: 992px)
+    .container, .container-header
+        width: variables.$container-tablet
+
+    .container-header
+        padding: 1rem
+
+@media (max-width: 768px)
+    .container, .container-header
+        width: variables.$container-mobile
+
+    .container-header
+        padding: 2rem 0
+        flex-direction: column
+
+        .details
+            width: 50rem
+
+            .title
+                font-size: 3.8rem
+                line-height: 4rem
+
+            .biograph
+                margin: 1rem 0
+
+@media (max-width: 600px)
+    .container, .container-header
+        width: variables.$container-small-mobile
+
+    .container-header
+        .poster
+            img
+                width: 20rem
+                height: 30rem
+
+        .details
+            width: 100%
+            padding: 1rem
+
+            .title
+                font-size: 3rem
+                line-height: 3.5rem

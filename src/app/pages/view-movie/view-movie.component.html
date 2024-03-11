@@ -1,0 +1,80 @@
+<header
+    class="header"
+    *ngIf="!loading; else loading_content"
+    [style.background-image]="
+        'linear-gradient(0deg, rgba(44, 52, 64, 0.7), rgba(44, 52, 64, 0.7)), url(\'' +
+        imgPath +
+        movieDetails.backdrop_path +
+        '\')'
+    "
+>
+    <div class="container-header">
+        <div class="poster">
+            <img src="{{ imgPath }}{{ movieDetails.poster_path }}" />
+        </div>
+        <div class="details">
+            <h1 class="title">
+                {{ movieDetails.title }}
+                <span>({{ movieDetails.release_date | date: 'yyyy' }})</span>
+            </h1>
+            <div class="release">
+                <p>{{ movieDetails.release_date | date: 'dd/MM/yyyy' }} -</p>
+                <span *ngFor="let genre of movieDetails.genres">{{
+                    genre.name
+                }}</span>
+            </div>
+            <div class="rate-favorite">
+                <div class="rate" role="progressbar">
+                    <div class="spinner">
+                        <p>{{ movieDetails.vote_average * 10 | percentage }}</p>
+                    </div>
+                    <p>Avaliações</p>
+                </div>
+                <fa-icon [icon]="iconHeart" (click)="handleFavorite()" />
+            </div>
+            <div class="synopsis">
+                <h2>Sinopse</h2>
+                <p>{{ movieDetails.overview }}</p>
+            </div>
+            <div class="multiple-details">
+                <div class="detail-row">
+                    <h3>Orçamento:</h3>
+                    <p>{{ movieDetails.budget | currency }}</p>
+                </div>
+                <div class="detail-row">
+                    <h3>Receita:</h3>
+                    <p>{{ movieDetails.revenue | currency }}</p>
+                </div>
+            </div>
+            <div class="multiple-details">
+                <div class="detail-row">
+                    <h3>Título Original:</h3>
+                    <p>{{ movieDetails.original_title }}</p>
+                </div>
+                <div class="detail-row">
+                    <h3>Idioma Original:</h3>
+                    <p>{{ movieDetails.original_language }}</p>
+                </div>
+            </div>
+            <div class="producers">
+                <h3>Produtora(s):</h3>
+                <p *ngFor="let prod of movieDetails.production_companies">
+                    {{ prod.name }}
+                </p>
+            </div>
+        </div>
+    </div>
+</header>
+<ng-template #loading_content>
+    <div class="loading">
+        <mat-spinner [diameter]="50" />
+    </div>
+</ng-template>
+<div class="container">
+    <app-list-actors
+        [actors]="movieDetails ? movieDetails.credits.cast : undefined"
+        [title]="'Elenco'"
+        [loading]="loading"
+        [inError]="error"
+    />
+</div>

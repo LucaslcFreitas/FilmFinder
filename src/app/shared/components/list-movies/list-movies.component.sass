@@ -1,0 +1,101 @@
+@use '../../../../variables'
+
+.list-container
+    margin: 2rem 0
+    position: relative
+
+    .title
+        font-size: 2.4rem
+
+    .list
+        display: grid
+        grid-template-columns: repeat(6, 1fr)
+        gap: 1.65rem
+
+    .inline-list
+        grid-template-rows: 1fr
+        grid-auto-flow: column
+        overflow: hidden
+        position: relative
+
+        &::after
+            content: ''
+            height: 93%
+            width: 15rem
+            position: absolute
+            bottom: 0
+            right: 0
+            background-image: linear-gradient(to right, rgba(33, 34, 38, 0) , var(--bgPrimary))
+            z-index: 11
+
+    .see-more
+        position: absolute
+        top: 0.8rem
+        right: 2rem
+        background-color: variables.$color-green
+        padding: 0.4rem 1.5rem
+        border-radius: 5px
+        text-decoration: none
+        font-size: 1.6rem
+        transition: all 200ms
+        color: variables.$color-primary
+
+        &:hover
+            filter: brightness(0.8)
+
+    .error
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+
+        h3
+            font-size: 2rem
+
+        a
+            font-size: 1.5rem
+            text-decoration: none
+            color: variables.$color-orange
+
+.loading
+    display: flex
+    justify-content: center
+    align-items: center
+    min-height: 20rem
+
+@media (max-width: 1600px)
+    .list-container
+        .list
+            grid-template-columns: repeat(4, 1fr)
+
+@media (max-width: 992px)
+    .list-container
+        .list
+            grid-template-columns: repeat(3, 1fr)
+
+@media (max-width: 768px)
+    .list-container
+
+        .list
+            grid-template-columns: 1fr 1fr
+            justify-items: center
+
+        .inline-list
+            grid-auto-flow: row
+
+            &::after
+                display: none
+
+        .see-more
+            position: relative
+            margin-left: 2rem
+
+            &:hover
+                filter: brightness(1)
+
+@media (max-width: 600px)
+    .list-container
+        padding: 1rem
+
+        .list
+            grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr))

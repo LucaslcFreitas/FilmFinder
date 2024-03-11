@@ -1,0 +1,44 @@
+<nav class="nav-bar">
+    <div class="container" [ngClass]="{ 'suspense-menu': isOpenMenu }">
+        <a class="logo-link" routerLink="/"
+            ><h2>FilmFinder</h2>
+            <fa-icon [icon]="iconSearch"
+        /></a>
+        <ul class="links">
+            <li>
+                <a>Filmes</a>
+                <div class="dropdown-nav">
+                    <a routerLink="nowPlaing">Lançamentos</a>
+                    <a routerLink="popular">Populares</a>
+                    <a routerLink="topRated">Melhores Avaliados</a>
+                </div>
+            </li>
+            <li><a routerLink="/actors">Atores</a></li>
+        </ul>
+        <div class="search-container">
+            <form
+                (ngSubmit)="handleSearch()"
+                [formGroup]="searchForm"
+                #formDir="ngForm"
+                class="search"
+            >
+                <fa-icon [icon]="iconSearch" />
+                <input
+                    type="search"
+                    formControlName="search"
+                    placeholder="Encontrar filmes..."
+                    [ngClass]="{
+                        'search-error':
+                            getSearch()?.invalid && formDir.submitted
+                    }"
+                />
+            </form>
+            <button class="theme" (click)="handleChangeTheme()">
+                <fa-icon [icon]="iconTheme" />
+            </button>
+            <button class="menu" (click)="handleOpenMenu()">
+                <fa-icon [icon]="iconMenu" />
+            </button>
+        </div>
+    </div>
+</nav>

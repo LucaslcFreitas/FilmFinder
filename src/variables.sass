@@ -1,0 +1,33 @@
+//Colors
+$background-primary: #212226
+$background-secondary: #2b2b2c
+
+$color-primary: #f1f1e3
+$color-secondary: #e2e2e1
+$color-green: #2e9699
+$color-yellow: #f7dc67
+$color-orange: #f56c40
+$color-purple: #a7236f
+$color-dark-gray: #212226
+$color-light-gray: #333333
+
+//Sizes
+$container-large: 130rem
+$container-normal: 108rem
+$container-small: 87rem
+$container-tablet: 72rem
+$container-mobile: 56rem
+$container-small-mobile: 100%
+
+//Themes
+@mixin darken()
+    --bgPrimary: #{$background-primary}
+    --bgSecondary: #{$background-secondary}
+    --textPrimary: #{$color-primary}
+    --textSecondary: #{$color-secondary}
+
+@mixin lighten()
+    --bgPrimary: #{$color-primary} !important
+    --bgSecondary: #{$color-secondary} !important
+    --textPrimary: #{$background-primary} !important
+    --textSecondary: #{$color-light-gray} !important

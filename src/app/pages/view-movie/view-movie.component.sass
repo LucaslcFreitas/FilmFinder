@@ -1,0 +1,203 @@
+@use '../../../variables'
+
+.header
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    height: 50rem
+
+    .container-header
+        display: flex
+        gap: 1rem
+        justify-content: center
+        align-items: center
+        height: 100%
+
+        .poster
+            img
+                width: 25rem
+                height: 37.5rem
+                border-radius: 5px
+
+        .details
+            width: 50rem
+
+            .title
+                font-size: 4.8rem
+                line-height: 4.8rem
+                color: variables.$color-primary
+
+                span
+                    font-weight: normal
+                    font-size: 4rem
+                    color: variables.$color-primary
+
+            .release
+                p, span
+                    font-size: 1.4rem
+                    color: variables.$color-primary
+
+                p
+                    display: inline
+
+                    &::after
+                        content: ' '
+
+                span
+                    &::after
+                        content: ', '
+
+                    &:last-child
+                        &::after
+                            content: ''
+
+            .rate-favorite
+                margin: 2rem 0
+                display: flex
+
+                .rate
+                    display: flex
+                    align-items: center
+
+                    >p
+                        margin-left: 1.6rem
+                        font-size: 1.4rem
+                        color: variables.$color-primary
+
+                    .spinner
+                        width: 4rem
+                        height: 4rem
+                        background-color: variables.$color-light-gray
+                        border-radius: 50%
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                        border: 1px solid variables.$color-primary
+
+                        p
+                            font-size: 1.4rem
+                            color: variables.$color-primary
+
+                fa-icon
+                    margin-left: 2rem
+                    font-size: 2.5rem
+                    color: variables.$color-purple
+                    cursor: pointer
+                    filter: drop-shadow(5px 5px 10px variables.$background-primary)
+                    z-index: 10
+
+                    &:hover
+                        filter: brightness(0.8)
+
+            .synopsis
+                h2
+                    font-size: 1.8rem
+                    color: variables.$color-primary
+
+                p
+                    font-size: 1.4rem
+                    line-height: 1.6rem
+                    color: variables.$color-primary
+
+            .multiple-details
+                display: flex
+                gap: 1rem
+                margin: 1rem 0
+                flex-wrap: wrap
+
+                .detail-row
+                    display: flex
+                    align-items: center
+                    gap: 0.5rem
+
+                    h3, p
+                        font-size: 1.4rem
+                        color: variables.$color-primary
+
+            .producers
+                display: flex
+                align-items: center
+                gap: 0.5rem
+                flex-wrap: wrap
+
+                h3, p
+                    font-size: 1.4rem
+                    color: variables.$color-primary
+
+                p
+                    line-height: 1.4rem
+
+                    &::after
+                        content: ', '
+
+                    &:last-child
+                        &::after
+                            content: ''
+
+.loading
+    display: flex
+    justify-content: center
+    align-items: center
+    min-height: 20rem
+
+.container, .container-header
+    width: variables.$container-large
+    margin: 0 auto
+
+@media (max-width: 1600px)
+    .container, .container-header
+        width: variables.$container-normal
+
+@media (max-width: 1200px)
+    .container, .container-header
+        width: variables.$container-small
+
+@media (max-width: 992px)
+    .container, .container-header
+        width: variables.$container-tablet
+
+@media (max-width: 768px)
+    .container, .container-header
+        width: variables.$container-mobile
+
+    .header
+        height: auto
+
+        .container-header
+            padding: 2rem 0
+            flex-direction: column
+
+            .details
+                .title
+                    font-size: 3.8rem
+                    line-height: 4rem
+
+                    span
+                        font-size: 2rem
+
+                .rate-favorite
+                    fa-icon
+                        &:hover
+                            filter: brightness(1)
+
+@media (max-width: 600px)
+    .container, .container-header
+        width: variables.$container-small-mobile
+
+    .header
+        .container-header
+            .poster
+                img
+                    width: 20rem
+                    height: 30rem
+
+            .details
+                width: 100%
+                padding: 1rem
+
+                .title
+                    font-size: 3rem
+                    line-height: 3.5rem
+
+                    span
+                        font-size: 2rem

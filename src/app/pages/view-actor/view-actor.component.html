@@ -1,0 +1,46 @@
+<header class="container-header" *ngIf="!loading; else loading_content">
+    <div class="poster">
+        <img src="{{ imgPath }}{{ actorDetails.profile_path }}" />
+    </div>
+    <div class="details">
+        <h1 class="title">
+            {{ actorDetails.name }}
+        </h1>
+        <div class="personal-data">
+            <p>
+                {{ mockGender() }} -
+                {{ actorDetails.birthday | date: 'dd/MM/yyyy' }}
+                ({{ actorDetails.birthday | age }} anos)
+            </p>
+        </div>
+        <div class="biograph">
+            <h2>Biografia</h2>
+            <p>{{ actorDetails.biography }}</p>
+        </div>
+        <div class="detail-row">
+            <h3>Local de Nascimento:</h3>
+            <p>{{ actorDetails.place_of_birth }}</p>
+        </div>
+        <div class="known-as">
+            <h3>Também Conhecido(a) Como:</h3>
+            <p *ngFor="let name of actorDetails.also_known_as">
+                {{ name }}
+            </p>
+        </div>
+    </div>
+</header>
+<ng-template #loading_content>
+    <div class="loading">
+        <mat-spinner [diameter]="50" />
+    </div>
+</ng-template>
+<div class="container">
+    @if (actorDetails && actorDetails.movie_credits) {
+        <app-list-movies
+            [movies]="actorDetails.movie_credits.cast"
+            [title]="'Seus Trabalhos'"
+            [loading]="loading"
+            [inError]="error"
+        />
+    }
+</div>

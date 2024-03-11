@@ -1,0 +1,31 @@
+@use '../../../../variables'
+
+.actor-card
+    width: 20rem
+    margin-top: 1.5rem
+    background-color: var(--bgSecondary)
+    border-radius: 5px
+    overflow: hidden
+
+    &:hover
+        .profile
+            img
+                transform: scale(1.1)
+
+    .profile
+        width: 20rem
+        height: 30rem
+        overflow: hidden
+
+        img
+            transition: all 300ms
+
+    .body
+        padding: 1rem
+
+        h3
+            font-size: 2rem
+            line-height: 1.8rem
+
+        p
+            font-size: 1.4rem
