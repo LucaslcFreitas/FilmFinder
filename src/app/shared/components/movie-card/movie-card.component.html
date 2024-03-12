@@ -1,13 +1,27 @@
 <div class="movie-card">
-    <div class="cover" (click)="handleOpenMovie()">
-        <fa-icon [icon]="iconHeart" (click)="handleFavorite($event)" />
-        <img src="{{ baseUrlImage }}{{ movie.poster_path }}" alt="" />
+    <div class="cover" (click)="handleOpenMovie()" [attr.data-testid]="'cover'">
+        <fa-icon
+            [icon]="iconHeart"
+            [attr.data-testid]="'favorite'"
+            (click)="handleFavorite($event)"
+        />
+        <img
+            src="{{ baseUrlImage }}{{ movie.poster_path }}"
+            [attr.data-testid]="'poster'"
+            alt=""
+        />
         <div class="rate" role="progressbar">
-            <p>{{ movie.vote_average * 10 | percentage }}</p>
+            <p [attr.data-testid]="'average'">
+                {{ movie.vote_average * 10 | percentage }}
+            </p>
         </div>
     </div>
     <div class="body">
-        <a routerLink="movie/{{ movie.id }}">{{ movie.title }}</a>
-        <p>{{ movie.release_date | date: 'dd/MM/yyyy' }}</p>
+        <a [attr.data-testid]="'title'" routerLink="movie/{{ movie.id }}">{{
+            movie.title
+        }}</a>
+        <p [attr.data-testid]="'subtitle'">
+            {{ movie.release_date | date: 'dd/MM/yyyy' }}
+        </p>
     </div>
 </div>
