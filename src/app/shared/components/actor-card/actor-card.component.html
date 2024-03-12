@@ -1,14 +1,19 @@
-<a routerLink="/actor/{{ actor.id }}" style="text-decoration: none">
+<a
+    routerLink="/actor/{{ actor.id }}"
+    style="text-decoration: none"
+    [attr.data-testid]="'container-link'"
+>
     <div class="actor-card">
         <div class="profile">
             <img
                 src="{{ baseUrlImage }}{{ actor.profile_path }}"
                 alt="{{ actor.name }}"
+                [attr.data-testid]="'profile'"
             />
         </div>
         <div class="body">
-            <h3>{{ actor.name }}</h3>
-            <p>{{ getSubTitle() }}</p>
+            <h3 [attr.data-testid]="'name'">{{ actor.name }}</h3>
+            <p [attr.data-testid]="'subtitle'">{{ getSubTitle() }}</p>
         </div>
     </div>
 </a>
