@@ -1,10 +1,10 @@
 <nav class="nav-bar">
     <div class="container" [ngClass]="{ 'suspense-menu': isOpenMenu }">
-        <a class="logo-link" routerLink="/"
+        <a class="logo-link" routerLink="/" [attr.data-testid]="'logo'"
             ><h2>FilmFinder</h2>
             <fa-icon [icon]="iconSearch"
         /></a>
-        <ul class="links">
+        <ul class="links" [attr.data-testid]="'links'">
             <li>
                 <a>Filmes</a>
                 <div class="dropdown-nav">
@@ -21,6 +21,7 @@
                 [formGroup]="searchForm"
                 #formDir="ngForm"
                 class="search"
+                [attr.data-testid]="'form-search'"
             >
                 <fa-icon [icon]="iconSearch" />
                 <input
@@ -33,10 +34,18 @@
                     }"
                 />
             </form>
-            <button class="theme" (click)="handleChangeTheme()">
+            <button
+                class="theme"
+                (click)="handleChangeTheme()"
+                [attr.data-testid]="'button-theme'"
+            >
                 <fa-icon [icon]="iconTheme" />
             </button>
-            <button class="menu" (click)="handleOpenMenu()">
+            <button
+                class="menu"
+                (click)="handleOpenMenu()"
+                [attr.data-testid]="'button-menu'"
+            >
                 <fa-icon [icon]="iconMenu" />
             </button>
         </div>
