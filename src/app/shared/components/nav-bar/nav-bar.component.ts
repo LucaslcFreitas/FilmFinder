@@ -31,7 +31,6 @@ import {
     styleUrl: './nav-bar.component.sass',
 })
 export class NavBarComponent implements OnInit {
-    //Temp
     theme = 'dark';
 
     isOpenMenu = false;

@@ -1,4 +1,4 @@
-<div class="pages">
+<div class="pages" [attr.data-testid]="'pages'">
     <a
         *ngFor="let item of pages"
         [routerLink]="currentUrl"
