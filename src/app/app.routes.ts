@@ -9,7 +9,7 @@ import { SearchResultComponent } from './pages/search-result/search-result.compo
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'nowPlaing', component: ViewCategoryComponent },
+    { path: 'nowPlaying', component: ViewCategoryComponent },
     { path: 'popular', component: ViewCategoryComponent },
     { path: 'topRated', component: ViewCategoryComponent },
     { path: 'movie/:id', component: ViewMovieComponent },

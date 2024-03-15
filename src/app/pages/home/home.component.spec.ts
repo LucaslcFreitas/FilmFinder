@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { MovieService } from '../../core/services/movie/movie.service';
 import {
-    mockMoviesNowPlaing,
+    mockMoviesNowPlaying,
     mockMoviesPopular,
     mockMoviesTopRated,
 } from './home.mock';
@@ -17,7 +17,7 @@ describe('HomeComponent', () => {
 
     beforeEach(async () => {
         mockMovieService = jasmine.createSpyObj('MovieService', [
-            'getNowPlaingMovies',
+            'getNowPlayingMovies',
             'getPopularMovies',
             'getTopRatedMovies',
             'getMovie',
@@ -35,8 +35,8 @@ describe('HomeComponent', () => {
             },
         });
 
-        mockMovieService.getNowPlaingMovies.and.returnValues(
-            of(mockMoviesNowPlaing)
+        mockMovieService.getNowPlayingMovies.and.returnValues(
+            of(mockMoviesNowPlaying)
         );
         mockMovieService.getPopularMovies.and.returnValues(
             of(mockMoviesPopular)

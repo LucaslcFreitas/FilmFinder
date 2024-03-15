@@ -13,7 +13,7 @@ export class MovieService {
     private baseApiUrl = 'https://api.themoviedb.org/3/movie/';
     private baseApiUrlSearch = 'https://api.themoviedb.org/3/search/movie';
 
-    private endpointnowPlaing = 'now_playing';
+    private endpointnowPlaying = 'now_playing';
     private endpointPopular = 'popular';
     private endpointTopRated = 'top_rated';
 
@@ -21,8 +21,8 @@ export class MovieService {
 
     constructor(private http: HttpClient) {}
 
-    getNowPlaingMovies(page: number = 1): Observable<Response<Movie>> {
-        const url = `${this.baseApiUrl}${this.endpointnowPlaing}?api_key=${environment.apiKey}&language=${this.language}&page=${page}`;
+    getNowPlayingMovies(page: number = 1): Observable<Response<Movie>> {
+        const url = `${this.baseApiUrl}${this.endpointnowPlaying}?api_key=${environment.apiKey}&language=${this.language}&page=${page}`;
 
         return this.http.get<Response<Movie>>(url);
     }

@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         //Now Plaing
-        this.movieService.getNowPlaingMovies().subscribe(
+        this.movieService.getNowPlayingMovies().subscribe(
             (response) => {
                 this.moviesNowPlaing = response.results;
                 this.loadingNowPlaing = false;

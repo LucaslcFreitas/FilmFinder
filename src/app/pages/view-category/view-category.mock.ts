@@ -1,7 +1,7 @@
 import { Movie } from '../../shared/models/movie';
 import { Response } from '../../shared/models/response';
 
-export const mockMoviesNowPlaying: Response<Movie> = {
+export const mockMoviesNowPlaing: Response<Movie> = {
     page: 1,
     results: [
         {
