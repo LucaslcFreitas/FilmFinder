@@ -34,6 +34,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class ViewMovieComponent implements OnInit {
     movieDetails!: MovieDetails;
+    backdropPath: string = '';
     loading: boolean = true;
     error: boolean = false;
 
@@ -69,6 +70,7 @@ export class ViewMovieComponent implements OnInit {
             this.movieService.getMovie(id).subscribe(
                 (response) => {
                     this.movieDetails = response;
+                    this.backdropPath = response.backdrop_path;
                     this.loading = false;
                     this.error = false;
                     this.titleService.setTitle(
