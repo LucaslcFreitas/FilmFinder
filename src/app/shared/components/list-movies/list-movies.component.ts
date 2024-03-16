@@ -24,23 +24,26 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     styleUrl: './list-movies.component.sass',
 })
 export class ListMoviesComponent implements OnInit, OnChanges {
-    @Input() movies: Movie[] = [];
+    @Input() movies?: Movie[] = [];
     @Input() title: string = '';
     @Input() loading: boolean = true;
     @Input() isDemo?: boolean = false;
     @Input() showMoreLink?: string = '';
     @Input() inError?: boolean = false;
 
-    listMovies: Movie[] = [];
+    listMovies?: Movie[] = [];
 
     ngOnInit(): void {
-        this.listMovies = this.isDemo ? this.movies.slice(0, 6) : this.movies;
+        this.listMovies =
+            this.isDemo && this.movies?.length
+                ? this.movies.slice(0, 6)
+                : this.movies;
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['movies'].previousValue != changes['movies'].currentValue) {
             this.listMovies = this.isDemo
-                ? this.movies.slice(0, 6)
+                ? this.movies?.slice(0, 6)
                 : this.movies;
         }
     }
