@@ -1,22 +1,26 @@
-<div class="list-container" *ngIf="!loading; else loading_content">
+<div
+    class="list-container"
+    *ngIf="!loading; else loading_content"
+    [attr.data-testid]="'content'"
+>
     <h3 class="title">{{ title }}</h3>
     <ng-container *ngIf="!inError; else error_content">
-        <div class="list">
+        <div class="list" [attr.data-testid]="'list'">
             @for (actor of actors; track $index) {
-                <div class="movie">
+                <div class="movie" [attr.data-testid]="'actor'">
                     <app-actor-card [actor]="actor" />
                 </div>
             }
         </div>
     </ng-container>
     <ng-template #error_content>
-        <div class="error">
+        <div class="error" [attr.data-testid]="'error'">
             <h3>Falha ao buscar os dados :(</h3>
         </div>
     </ng-template>
 </div>
 <ng-template #loading_content>
-    <div class="loading">
+    <div class="loading" [attr.data-testid]="'loading'">
         <mat-spinner [diameter]="50" />
     </div>
 </ng-template>

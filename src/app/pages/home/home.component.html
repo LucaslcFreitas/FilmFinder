@@ -6,7 +6,7 @@
             de semana!
         </p>
     </header>
-    <div class="container">
+    <div class="container" [attr.data-testid]="'container'">
         <app-list-movies
             [loading]="loadingNowPlaing"
             [movies]="moviesNowPlaing"

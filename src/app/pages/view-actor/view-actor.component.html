@@ -1,33 +1,48 @@
-<header class="container-header" *ngIf="!loading; else loading_content">
-    <div class="poster">
-        <img src="{{ imgPath }}{{ actorDetails.profile_path }}" />
-    </div>
-    <div class="details">
-        <h1 class="title">
-            {{ actorDetails.name }}
-        </h1>
-        <div class="personal-data">
-            <p>
-                {{ mockGender() }} -
-                {{ actorDetails.birthday | date: 'dd/MM/yyyy' }}
-                ({{ actorDetails.birthday | age }} anos)
-            </p>
+<header
+    class="container-header"
+    *ngIf="!loading; else loading_content"
+    [attr.data-testid]="'header'"
+>
+    @if (actorDetails && !error) {
+        <div class="poster">
+            <img
+                src="{{ imgPath }}{{ actorDetails.profile_path }}"
+                [attr.data-testid]="'poster'"
+            />
         </div>
-        <div class="biograph">
-            <h2>Biografia</h2>
-            <p>{{ actorDetails.biography }}</p>
+        <div class="details">
+            <h1 class="title" [attr.data-testid]="'title'">
+                {{ actorDetails.name }}
+            </h1>
+            <div class="personal-data">
+                <p [attr.data-testid]="'personalData'">
+                    {{ mockGender() }} -
+                    {{ actorDetails.birthday | date: 'dd/MM/yyyy' }}
+                    ({{ actorDetails.birthday | age }} anos)
+                </p>
+            </div>
+            <div class="biograph" [attr.data-testid]="'biograph'">
+                <h2>Biografia</h2>
+                <p>{{ actorDetails.biography }}</p>
+            </div>
+            <div class="detail-row" [attr.data-testid]="'birth'">
+                <h3>Local de Nascimento:</h3>
+                <p>{{ actorDetails.place_of_birth }}</p>
+            </div>
+            <div class="known-as" [attr.data-testid]="'knownAs'">
+                <h3>Também Conhecido(a) Como:</h3>
+                <p *ngFor="let name of actorDetails.also_known_as">
+                    {{ name }}
+                </p>
+            </div>
         </div>
-        <div class="detail-row">
-            <h3>Local de Nascimento:</h3>
-            <p>{{ actorDetails.place_of_birth }}</p>
-        </div>
-        <div class="known-as">
-            <h3>Também Conhecido(a) Como:</h3>
-            <p *ngFor="let name of actorDetails.also_known_as">
-                {{ name }}
-            </p>
-        </div>
-    </div>
+    } @else {
+        <ng-template #error_content>
+            <div class="error" [attr.data-testid]="'error'">
+                <h3>Falha ao buscar os dados :(</h3>
+            </div>
+        </ng-template>
+    }
 </header>
 <ng-template #loading_content>
     <div class="loading">
@@ -35,12 +50,10 @@
     </div>
 </ng-template>
 <div class="container">
-    @if (actorDetails && actorDetails.movie_credits) {
-        <app-list-movies
-            [movies]="actorDetails.movie_credits.cast"
-            [title]="'Seus Trabalhos'"
-            [loading]="loading"
-            [inError]="error"
-        />
-    }
+    <app-list-movies
+        [movies]="actorDetails ? actorDetails.movie_credits.cast : undefined"
+        [title]="'Seus Trabalhos'"
+        [loading]="loading"
+        [inError]="error"
+    />
 </div>

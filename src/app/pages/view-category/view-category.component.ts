@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from '../../shared/models/movie';
 import { MovieService } from '../../core/services/movie/movie.service';
@@ -15,7 +15,7 @@ import { Title } from '@angular/platform-browser';
     templateUrl: './view-category.component.html',
     styleUrl: './view-category.component.sass',
 })
-export class ViewCategoryComponent {
+export class ViewCategoryComponent implements OnInit {
     title: string = '';
     movies: Movie[] = [];
     loading: boolean = true;
@@ -29,8 +29,10 @@ export class ViewCategoryComponent {
         private router: Router,
         private movieService: MovieService,
         private titleService: Title
-    ) {
-        route.queryParams.subscribe((p) => {
+    ) {}
+
+    ngOnInit(): void {
+        this.route.queryParams.subscribe((p) => {
             if (this.page.toString() != p['page']) {
                 this.loadMovies();
                 this.page = Number(p['page']) || 1;
@@ -47,11 +49,11 @@ export class ViewCategoryComponent {
             this.page = Number(params['page']) || 1;
         });
 
-        if (category.startsWith('/nowPlaing')) {
+        if (category.startsWith('/nowPlaying')) {
             this.titleService.setTitle('Últimos Lançamentos | FilmFinder');
             this.title = 'Últimos Lançamentos';
-            this.currentUrl = '/nowPlaing';
-            this.movieService.getNowPlaingMovies(this.page).subscribe(
+            this.currentUrl = '/nowPlaying';
+            this.movieService.getNowPlayingMovies(this.page).subscribe(
                 (response) => {
                     this.movies = response.results;
                     this.loading = false;

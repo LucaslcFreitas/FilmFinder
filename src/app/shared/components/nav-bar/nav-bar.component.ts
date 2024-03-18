@@ -31,7 +31,6 @@ import {
     styleUrl: './nav-bar.component.sass',
 })
 export class NavBarComponent implements OnInit {
-    //Temp
     theme = 'dark';
 
     isOpenMenu = false;
@@ -59,7 +58,6 @@ export class NavBarComponent implements OnInit {
 
     handleChangeTheme() {
         this.theme = this.theme === 'dark' ? 'light' : 'dark';
-        console.log(this.theme);
         this.iconTheme = this.theme === 'dark' ? faMoon : faSun;
 
         if (this.theme === 'light') document.body.classList.add('theme-light');
@@ -73,11 +71,9 @@ export class NavBarComponent implements OnInit {
 
     handleSearch() {
         if (this.searchForm.invalid) {
-            console.log(this.searchForm.get('search')?.errors);
             return;
         }
 
-        console.log('Search');
         this.router.navigate(['/search'], {
             queryParams: { q: this.getSearch()?.value },
         });

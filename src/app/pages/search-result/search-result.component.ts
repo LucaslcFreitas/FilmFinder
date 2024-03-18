@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../../core/services/movie/movie.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,7 +14,7 @@ import { Title } from '@angular/platform-browser';
     templateUrl: './search-result.component.html',
     styleUrl: './search-result.component.sass',
 })
-export class SearchResultComponent {
+export class SearchResultComponent implements OnInit {
     query: string = '';
     movies: Movie[] = [];
     loading: boolean = true;
@@ -26,15 +26,26 @@ export class SearchResultComponent {
         private movieService: MovieService,
         private titleService: Title
     ) {
-        this.route.queryParams.subscribe((p) => {
-            if (p['q'] && this.query != p['q']) {
-                this.query = p['q'] || '';
-                this.search();
-            } else {
-                this.router.navigate(['/']);
-            }
-        });
+        // this.route.queryParams.subscribe((p) => {
+        //     if (p['q'] && this.query != p['q']) {
+        //         this.query = p['q'] || '';
+        //         this.search();
+        //     } else {
+        //         this.router.navigate(['/']);
+        //     }
+        // });
         this.titleService.setTitle(`${this.query} | FilmFinder`);
+    }
+
+    ngOnInit(): void {
+        const auxQuery = this.route.snapshot.queryParams['q'];
+        if (auxQuery) {
+            this.query = auxQuery;
+            this.search();
+        } else {
+            console.log(auxQuery);
+            this.router.navigate(['/']);
+        }
     }
 
     search() {
