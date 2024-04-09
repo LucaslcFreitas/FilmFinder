@@ -53,7 +53,7 @@ describe('NavBarComponent', () => {
         const sublinks = links[0].querySelector('div')?.querySelectorAll('a');
         expect(sublinks).toBeTruthy();
         expect(sublinks?.length).toBe(3);
-        expect(sublinks![0].getAttribute('href')).toBe('/nowPlaing');
+        expect(sublinks![0].getAttribute('href')).toBe('/nowPlaying');
         expect(sublinks![0].textContent).toBe('Lançamentos');
         expect(sublinks![1].getAttribute('href')).toBe('/popular');
         expect(sublinks![1].textContent).toBe('Populares');
